@@ -130,8 +130,27 @@ sfsf
 
 # 正文
 <div style="width: 100px;height: 100px;background: yellow;"></div> -->
-<iframe  width = "100%"  scrolling = no  height = "3700"  frameborder = "0"  src = "./about.html" > </iframe>
+<iframe id=Myiframe width = "100%"  scrolling = no  height = "3700"  frameborder = "0"  src = "./about.html" > </iframe>
 
+<script type="text/javascript">
+    $(function () {
+        $('#abgne_iframe').on("load", function () {
+
+        //js寫法
+         var a = document.getElementById("abgne_iframe").contentWindow;  
+         //可以抓到iframe視窗寫法1
+        //  var a=window.frames["abgne_iframe"];  //可以抓到iframe視窗寫法2
+         //window.frames["abgne_iframe"].document.getElementsByName("csrf-token")[4]..getAttribute("content");  
+         //理論上可以抓到iframe裡面的值，但是實際上不行...
+
+         //var b = window.frames["abgne_iframe"].getElementsByTagName("meta")[4].getAttribute("content");
+            var test = a.getElementsByTagName("meta")[4].getAttribute("content");            
+            alert(test);
+            alert("success");
+
+        });
+    });
+</script>
 </div>
               </div>
             </div>
