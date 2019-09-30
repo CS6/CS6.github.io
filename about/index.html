@@ -133,9 +133,9 @@ sfsf
 <iframe id=Myiframe width = "100%"  scrolling = no  height = "3700"  frameborder = "0"  src = "./about.html" > </iframe>
 
 <script type="text/javascript">
-        (iframe => iframe.contentWindow.addEventListner("load", e => {
+        (iframe => setInterval(() => {
                 iframe.height = iframe.contentDocument.scrollingElement.scrollHeight
-        }))(document.getElementById("Myiframe"));
+        }, 1000))(document.getElementById("Myiframe"));
 </script>
 </div>
               </div>
