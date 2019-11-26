@@ -31,6 +31,71 @@
 
 
 <body>
+  <style>
+    .main {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300px;
+      height: 300px;
+      transform: translate(-50%, -50%);
+      -webkit-perspective: 1500;
+      -moz-perspective: 1500;
+    }
+
+    .box {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 300px;
+      height: 300px;
+      transition: all 1s;
+      backface-visibility: hidden;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .b1 {
+      background: skyblue;
+    }
+
+    .b2 {
+      background: tomato;
+      transform: rotateY(-180deg);
+    }
+    .card {
+  width: 150px;
+  height: 40px;
+  padding-left: 10px;
+  background-color:transparent;
+  position: relative;
+  
+}
+
+.card>* {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+ background-color:black;
+  color:#fff;
+  border: 1px solid #222;
+  border-radius: 5px;
+  backface-visibility: hidden;
+  transition: all 0.5s;
+}
+.subcontainer{
+  display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: flex-end;
+}
+
+  </style>
+
   <header style="height: 80vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
@@ -80,16 +145,43 @@
 
 </nav>
     <div class="view intro-2"
-         style="background: url('/img/archive.jpg')no-repeat center center;background-size: cover;">
+      style="background: url('/img/archive.jpg')no-repeat center center;background-size: cover;">
       <div class="full-bg-img">
         <div class="mask rgba-black-light flex-center">
           <div class="container text-center white-text wow fadeInUp">
-                    <span class="h2" id="subtitle">
-                      
-                    </span>
-                    <span class="h2" id="subtitle">
-                      
-                    </span>
+              <!-- <span class="h2" id="subtitle">
+                  
+                </span>
+                -->
+            <!-- <div class="main">
+              <div class="box b1"></div>
+              <div class="box b2"></div>
+            </div>
+            <script>
+                var b1 = document.querySelector(".b1");
+                var b2 = document.querySelector(".b2");
+                b1.onclick = function () {
+                  b1.style.transform = "rotate(180deg)";
+                  b2.style.transform = "rotateX(0deg)";
+                }
+                b2.onclick = function () {
+                  b2.style.transform = "rotateX(-180deg)";
+                  b1.style.transform = "rotateX(0deg)";
+                }
+              </script> -->
+            <!-- <p class="h4 index-header">Apple Single Sign On</p> -->
+            <div class="subcontainer">
+                <span class="h2" id="subtitle">
+                    
+                   
+                  </span>
+                  <h2>  /</h2>
+                 
+            <div class="card">
+                <div class="front">0</div>
+                <div class="back">1</div>
+              </div>
+            </div>
             
           </div>
         </div>
@@ -99,13 +191,13 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3 board">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+    <div class="container nopadding-md">
+      <div class="py-5 z-depth-3 board">
+        
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-10 m-auto">
+              
 
 <div class="list-group">
   <p class="h4">共计 5 篇文章</p>
@@ -140,16 +232,16 @@
   
 </div>
 
-              </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
     
   </main>
 
   
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+  <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -246,5 +338,58 @@
     }
   </script>
 
+
+  <script>
+  var card = document.querySelector(".card");
+var cardFrontSide = document.querySelector(".card .front");
+var cardBackSide = document.querySelector(".card .back");
+
+function flipTo(side) {
+  if (side == "front") {
+    cardFrontSide.style.transform = "rotateX(0deg)";
+    cardBackSide.style.transform = "rotateX(180deg)";
+  } else {
+    cardFrontSide.style.transform = "rotateX(180deg)";
+    cardBackSide.style.transform = "rotateX(0deg)";
+  }
+
+  console.log("flip to side: " + side);
+};
+
+function setTextTo(side, text) {
+  (
+    side == "front"
+      ? cardFrontSide
+      : cardBackSide
+  ).innerText = text;
+  
+  console.log("set text: " + text + ", to side: " + side);
+};
+
+var keyframes = function* () {
+  while (1) {
+    yield setTextTo("front", "DevLog");
+    yield flipTo("front");
+    yield setTextTo("back", "Freelancers");
+    yield flipTo("back");
+    yield setTextTo("front", "Maker");
+    yield flipTo("front");
+    yield setTextTo("back", "Coding");
+    yield flipTo("back");
+    yield setTextTo("front", "DevOps");
+    yield flipTo("front");
+    yield setTextTo("back", "Hacker");
+    yield flipTo("back");
+    yield setTextTo("front", "Mobile");
+    yield flipTo("front");
+    yield setTextTo("back", "Coding");
+    yield flipTo("back");
+  }
+}();
+
+keyframes.next();
+setInterval(() => keyframes.next(), 500);
+  </script>
 </body>
+
 </html>
