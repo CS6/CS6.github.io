@@ -14,7 +14,7 @@
   <meta name="description" content>
   <meta name="author" content="John Doe">
   <meta name="keywords" content>
-  <title>Docker-Travel(Docker 手機管理工具) ~ DaYuan DevLog</title>
+  <title>Google_App_Script取得資料夾中圖片url的API ~ DaYuan DevLog</title>
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css?v=5.7.2">
   <link rel="stylesheet" href="/lib/mdbootstrap/css/bootstrap.min.css?v=4.3.1">
   <link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css?v=4.8.7">
@@ -184,7 +184,7 @@ align-items: flex-end;
             </div>
             
             <br>
-            <p>星期一, 七月 1日 2019, 11:53 中午</p>
+            <p>星期五, 一月 3日 2020, 9:50 晚上</p>
             
           </div>
         </div>
@@ -203,17 +203,26 @@ align-items: flex-end;
       <div class="py-5 z-depth-3 board">
         <div class="post-content mx-auto">
           <div class="markdown-body">
-            <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTHBKWsQGP0cZkibi8O7Hb2ulZeLE_OLMBmtVkIdItIuKne5Hq5hmzewOfux262EGQ9Ouo8OO4dpd_9/embed?start=false&loop=false&delayms=3000" frameborder="0" width="100%" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+            <h2 id="Google-App-Script取得資料夾中圖片url的API"><a href="#Google-App-Script取得資料夾中圖片url的API" class="headerlink" title="Google_App_Script取得資料夾中圖片url的API"></a>Google_App_Script取得資料夾中圖片url的API</h2><pre><code>///抓取某資料夾中圖片url的api
+function doGet(e) {
+  var data = &#39;&#39;;
+  var arry=[]
 
-
-<script type="text/javascript">
-        (iframe => setInterval(() => {
-                iframe.height = iframe.contentDocument.scrollingElement.scrollHeight
-        }, 1000))(document.getElementById("Myiframe"));
-</script>
-
-
-
+  var images = DriveApp.getFolderById(&quot;資料夾ID&quot;).getFilesByType(MimeType.JPEG);
+  while(images.hasNext()){
+  var img = images.next();
+    // img.setSharing(DriveApp.Access.ANYONE, DriveApp.Permission.VIEW); this line can be dangerous!!
+    var imgId = img.getId(); 
+    var imgName = img.getName();
+    var pubUrl = baseUrl+imgId; // the public URL
+    Logger.log(pubUrl); 
+    var obj= {&quot;name&quot;:imgName,&quot;img&quot;:pubUrl}
+    arry.push(obj)
+  }
+  data = arry;
+  return ContentService.createTextOutput(JSON.stringify(data))
+    .setMimeType(ContentService.MimeType.JSON);
+}</code></pre>
             <hr>
           </div>
           <br>
@@ -221,8 +230,6 @@ align-items: flex-end;
             
             <p>
               <i class="iconfont icon-tag"></i>
-              
-                <a class="hover-with-bg" href="/tags/APP%E9%96%8B%E7%99%BC">APP開發</a>
               
             </p>
             
@@ -318,7 +325,7 @@ align-items: flex-end;
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Docker-Travel(Docker 手機管理工具)&nbsp;",
+        "Google_App_Script取得資料夾中圖片url的API&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

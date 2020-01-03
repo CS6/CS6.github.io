@@ -204,18 +204,31 @@ align-items: flex-end;
     
     
     <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/12/01/揪團打怪APP/">
-        <p class="h4 index-header">揪團打怪APP</p>
+      <a href="/2020/01/03/Google-App-Script取得資料夾中圖片url的API/">
+        <p class="h4 index-header">Google_App_Script取得資料夾中圖片url的API</p>
         <div class="index-excerpt">
           
-            <div class="index-text mb-1"></div>
+            <div class="index-text mb-1">Google_App_Script取得資料夾中圖片url的API///抓取某資料夾中圖片url的api
+function doGet(e) {
+  var data = &#39;&#39;;
+  var arry=[]
+
+  var images = DriveApp.getFolderById(&quot;資料夾ID&quot;).getFilesByType(MimeType.JPEG);
+  while(images.hasNext()){
+  var img = images.next();
+    // img.setSharing(DriveApp.Access.ANYONE, DriveApp.Permission.VIEW); this line can be dangerous!!
+    var imgId = img.getId(); 
+    var imgName = img.getName();
+    var pubUrl = baseUrl+imgId; // the public URL
+    Logger.log(pubUrl); 
+    va</div>
           
         </div>
       </a>
 
         <div>
           
-            <i class="iconfont icon-riqi2"></i>&nbsp;2019-12-01&nbsp;&nbsp;
+            <i class="iconfont icon-riqi2"></i>&nbsp;2020-01-03&nbsp;&nbsp;
           
           
           
@@ -406,7 +419,17 @@ More info: Deployment
         <p class="h4 index-header">Docker-Travel(Docker 手機管理工具)</p>
         <div class="index-excerpt">
           
-            <div class="index-text mb-1"></div>
+            <div class="index-text mb-1">
+
+
+
+        (iframe => setInterval(() => {
+                iframe.height = iframe.contentDocument.scrollingElement.scrollHeight
+        }, 1000))(document.getElementById("Myiframe"));
+
+
+
+</div>
           
         </div>
       </a>
@@ -462,7 +485,29 @@ More info: Deployment
         <p class="h4 index-header">SRP司馬庫斯管理系統</p>
         <div class="index-excerpt">
           
-            <div class="index-text mb-1"></div>
+            <div class="index-text mb-1">
+
+
+
+
+        (iframe => setInterval(() => {
+                iframe.height = iframe.contentDocument.scrollingElement.scrollHeight
+        }, 1000))(document.getElementById("Myiframe"));
+
+
+
+
+
+
+
+
+        (iframe => setInterval(() => {
+                iframe.height = iframe.contentDocument.scrollingElement.scrollHeight
+        }, 1000))(document.getElementById("Myiframe"));
+
+
+
+</div>
           
         </div>
       </a>
